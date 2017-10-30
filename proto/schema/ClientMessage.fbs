@@ -1,0 +1,24 @@
+namespace FTP.Messages.Client;
+
+// Union of various message types a client can send to a server.
+union Message {
+	ConnectionRequest
+}
+
+// Sent when a client wants to establish a new transfer connection.
+table ConnectionRequest {
+	filepath:string;
+
+	// Meta data about the request.
+	chunks:short;
+}
+
+table ClientMessage {
+	// Server generated client token.
+	token:string;
+
+	// The actual message.
+	message:Message;
+}
+
+root_type ClientMessage;

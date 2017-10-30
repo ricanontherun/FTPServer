@@ -1,0 +1,22 @@
+namespace FTP.Messages.Server;
+
+union Message {
+	ConnectionReply
+}
+
+table ConnectionReply {
+	client_token:string;
+}
+
+enum Status : ubyte {
+	Ok = 1,
+	Duplicate
+}
+
+table ServerMessage {
+	status:Status = Ok;
+
+	message:Message;
+}
+
+root_type ServerMessage;
